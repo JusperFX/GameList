@@ -16,8 +16,13 @@ public class GameGroup extends Game {
 
     @Override
     public String toString() {
-        return "GameGroup{" +
-                "gameGroup=" + gameGroup +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        for (Game game : gameGroup) {
+            sb.append(game).append("\n");
+        }
+        return getGroupName() + ":\n" + sb;
     }
+
+
+
 }

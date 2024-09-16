@@ -20,8 +20,6 @@ public class GameList {
 
     @Override
     public String toString() {
-        return "GameList{" +
-                "gameList=" + gameList +
-                '}';
+        return "Список Игр\n" + gameList;
     }
 }
