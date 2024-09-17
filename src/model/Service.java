@@ -21,5 +21,9 @@ public class Service {
         gameList.addGroupOfGames(gameGroup);
     }
 
+    public void sortByID () {
+        gameList.sortByID();
+    }
+
 
 }

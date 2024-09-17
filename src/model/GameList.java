@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class GameList {
@@ -18,8 +20,16 @@ public class GameList {
         gameList.add(gameGroup);
     }
 
+    public void sortByID() {
+        Collections.sort(gameList, Comparator.comparing(Game::getId));
+    }
+
     @Override
     public String toString() {
-        return "Список Игр\n" + gameList;
+        StringBuilder sb = new StringBuilder();
+        for (Game game : gameList) {
+            sb.append(game).append("\n");
+        }
+        return sb.toString();
     }
 }

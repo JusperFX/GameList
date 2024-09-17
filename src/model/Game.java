@@ -1,16 +1,17 @@
 package model;
 
-import java.util.Date;
-
 public class Game {
     private String name;
     private String genre;
     private int year;
     private Integer rating;
     private String groupName;
+    private static int idCounter = 0;
+    private int id;
 
     //Если игра наполнена всеми параметрами - конструктор
     public Game(String name, String genre, int year, Integer rating) {
+        this.id = ++idCounter;
         this.name = name;
         this.genre = genre;
         this.year = year;
@@ -39,12 +40,20 @@ public class Game {
         return name;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         if (rating != null) { // Проверяем, что рейтинг не равен null
-            return name + " " + genre + " " + year + " " + rating;
+            return id + ")" + name + " " + genre + " " + year + " " + rating;
         } else {
-            return name + " " + genre + " " + year; // Если рейтинг отсутствует
+            return id + ")" + name + " " + genre + " " + year; // Если рейтинг отсутствует
         }
     }
 

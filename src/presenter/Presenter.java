@@ -23,4 +23,7 @@ public class Presenter {
         service.addGroupOfGames(gameGroup);
     }
 
+    public void sortByID () {
+        service.sortByID();
+    }
 }

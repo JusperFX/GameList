@@ -20,7 +20,7 @@ public class GameGroup extends Game {
         for (Game game : gameGroup) {
             sb.append(game).append("\n");
         }
-        return getGroupName() + ":\n" + sb;
+        return "\n" +getGroupName() + ":\n" + sb;
     }
 
 
