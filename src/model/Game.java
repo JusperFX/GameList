@@ -1,10 +1,13 @@
 package model;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
     private String name;
     private String genre;
     private int year;
     private Integer rating;
+    private String review;
     private String groupName;
     private static int idCounter = 0;
     private int id;
@@ -27,6 +30,19 @@ public class Game {
     public Game(String groupName) {
         this.groupName = groupName;
     }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
 
     public String getGroupName() {
         return groupName;

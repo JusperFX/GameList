@@ -1,19 +1,26 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
-public class GameList {
-    private List<Game> gameList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class GameList implements Serializable {
+    private ObservableList<Game> gameList;
 
     public GameList() {
-        this.gameList = new ArrayList<>();
+        this.gameList = FXCollections.observableArrayList();
+    }
+
+    public ObservableList<Game> getGameList() {
+        return gameList;
     }
 
     public void addGame(Game game) {
-        gameList.add(game);
+        if (!gameList.contains(game)) {
+            gameList.add(game);
+        }
     }
 
     public void addGroupOfGames (GameGroup gameGroup) {
@@ -24,6 +31,10 @@ public class GameList {
         Collections.sort(gameList, Comparator.comparing(Game::getId));
     }
 
+    public Game getGameById(int id) {
+        return gameList.stream().filter(game -> game.getId() == id).findFirst().orElse(null);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -31,5 +42,35 @@ public class GameList {
             sb.append(game).append("\n");
         }
         return sb.toString();
+    }
+
+    public void clear() {
+        gameList.clear();
+    }
+
+    public void addAll(List<Game> games) {
+        gameList.addAll(games);
+    }
+
+    public Iterator<Game> iterator() {
+        return gameList.iterator(); // Возвращаем итератор стандартного списка
+    }
+
+//    public List<Game> toList() {
+//        List<Game> list = new ArrayList<>();
+//        for (Game game : gameList) { // Предполагая, что GameList реализует Iterable
+//            list.add(game);
+//        }
+//        return list;
+//    }
+
+    public List<Game> toList() {
+//        return new ArrayList<>(gameList); // Конвертируем ObservableList в ArrayList
+        List<Game> listedGames = gameList;
+        return listedGames;
+    }
+
+    public int size() {
+        return gameList.size();
     }
 }

@@ -7,23 +7,29 @@ public class FileHandler implements Writer {
 
     @Override
     public void save(Serializable serializable) {
+        System.out.println("Saving data...");
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(
                 new FileOutputStream(filePath))) {
             objectOutputStream.writeObject(serializable);
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Data saved successfully."); // Для отладки
+        } catch (IOException e) {
+            System.out.println("IOException: " + e.getMessage());
         }
     }
 
     @Override
     public Object read() {
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath))) {
-            Object object = objectInputStream.readObject();
-            return object;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        System.out.println("Reading data...");
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            return ois.readObject(); // Чтение объекта
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IOException: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("ClassNotFoundException: " + e.getMessage());
         }
+        return null;
     }
 
     @Override

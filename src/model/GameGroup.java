@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameGroup extends Game {
+public class GameGroup extends Game implements Serializable {
     private List<Game> gameGroup = new ArrayList<>();
 
     public GameGroup(String name) {
